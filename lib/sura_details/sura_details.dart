@@ -35,18 +35,20 @@ class _SuraDetailsScreenState extends State<SuraDetailsScreen> {
             ),
             child: Padding(
               padding: const EdgeInsets.all(8.0),
-              child: ListView.separated(
-                itemBuilder: (_, index) {
-                  return VerseWidget(verses[index], index + 1);
-                },
-                separatorBuilder: (_, __) {
-                  return Container(
-                    height: 1,
-                    margin: EdgeInsets.symmetric(horizontal: 24),
-                    width: double.infinity,
-                    color: Theme.of(context).primaryColor,
-                  );
-                },
+              child: verses.isEmpty
+                  ? Center(child: CircularProgressIndicator())
+                  : ListView.separated(
+                      itemBuilder: (_, index) {
+                        return VerseWidget(verses[index], index + 1);
+                      },
+                      separatorBuilder: (_, __) {
+                        return Container(
+                          height: 1,
+                          margin: EdgeInsets.symmetric(horizontal: 24),
+                          width: double.infinity,
+                          color: Theme.of(context).primaryColor,
+                        );
+                      },
                 itemCount: verses.length,
               ),
             ),
